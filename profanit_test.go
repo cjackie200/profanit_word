@@ -25,15 +25,15 @@ func (n *Node)checkAndFixMap(){
 }
 
 func (n *Node) setChild(key rune) *Node {
-		n.checkAndFixMap()
-		c, ok := n.child[key]
-		if ok {
-			return c
-		} else {
-			node := newNode()
-			n.child[key] = node
-			return node
-		}
+	n.checkAndFixMap()
+	c, ok := n.child[key]
+	if ok {
+		return c
+	} else {
+		node := newNode()
+		n.child[key] = node
+		return node
+	}
 }
 
 func (n *Node) getChild(key rune) (*Node, bool) {
