@@ -7,7 +7,6 @@ import (
 	"os"
 	"testing"
 	"time"
-	"wordstock"
 )
 
 type Node struct {
@@ -273,37 +272,12 @@ func equalRune(a, b []rune) bool {
 	}
 }
 
-func TestReplaceWordOld(t *testing.T) {
-	wordstock.Configurate("./2.txt")
-	t1 := time.Now().UnixNano()
-	sum := 0
-	for _, v := range word {
-		// wordstock.ValidWord(string(v))
-		src := string(v)
-		res := wordstock.FilterWords(src)
-		if src == res {
-			sum++
-			fmt.Println(src, sum)
-		}
-	}
-	t2 := time.Now().UnixNano()
-	fmt.Println("old 数据 :", len(word),"未过滤:",sum,  "耗时:", nsToMs(t2-t1))
-}
-
 func nsToMs(ns int64) float64{
 	return float64(ns)/1000000.0
 }
 
-// func BenchmarkReplaceWord(b *testing.B){
-// 	for i := 0; i < b.N; i++ {
-// 		// replace(word[100], '*')
-// 	}
-// }
-
-
-func TestCCC(*testing.T){
-	str := "abd你好"
-	a := []rune(str)
-	fmt.Println(str, len(str))
-	fmt.Println(a, len(a))
+func BenchmarkReplaceWord(b *testing.B){
+	for i := 0; i < b.N; i++ {
+		replace(word[100], '*')
+	}
 }
